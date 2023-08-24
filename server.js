@@ -20,18 +20,7 @@ const db = mysql.createConnection(
     console.log(`Connected to the client DB.`)
 );
 
-// db.query('SELECT * FROM employee', function(err, results) {
-//     console.log(results);
-// });
-
-// app.use((req, res) => {
-//     res.status(404).end();
-//   });
-
-//   app.listen(PORT, () => {
-//     console.log(`Server running on port ${PORT}`);
-//   });
-
+//inquirer prompts below. 
 function userPrompts() {
 
     inquirer
@@ -91,7 +80,7 @@ function viewAllDepartments() {
         userPrompts();
     });
 };
-
+//View all roles 
 function viewAllRoles() {
     const sql = `SELECT * FROM roles`;
     db.query(sql, (err, result) => {
@@ -103,7 +92,7 @@ function viewAllRoles() {
         userPrompts();
     });
 };
-
+//View all employees
 function viewAllEmployees() {
     const sql = `SELECT * FROM employee`;
     db.query(sql, (err, result) => {
@@ -115,7 +104,7 @@ function viewAllEmployees() {
         userPrompts();
     });
 };
-
+//Add a department 
 function addDepartment() {
     inquirer.prompt([
         {
@@ -142,9 +131,10 @@ function addDepartment() {
         });
 
 };
-
+//Add a role
 function addRole() {
 
+    //function to display information for user to remind of already existing departments.
     viewAllDepartments()
 
     inquirer.prompt([
@@ -178,9 +168,10 @@ function addRole() {
             })
         })
 };
-
+//Add an employee 
 function addEmployee() {
 
+    //functions to display information for user to remind of already existing employees and roles.
     viewAllEmployees()
     viewAllRoles()
 
@@ -221,9 +212,9 @@ function addEmployee() {
         })
 
 };
-
+//update an employee role.
 function updateEmployeeRole() {
-
+    //function to display current employees for user reference. 
     viewAllEmployees()
 
     inquirer.prompt([
